@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+     "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="javascript/jquery.tablesorter.min.js" type="text/javascript"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
+	<script src="javascript/dai_services.js" type="text/javascript"></script>
+	
+	<!-- Use the compiled and minified bootstrap CSS + theme -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+	
+	<!-- Use awesome fonts -->
+	<link href="html/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Use own style sheet file -->
+	<link rel="stylesheet" href="style/dai_services.css">
+	
+	<script>
+		$(function() {
+			$('#modal').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget); // Button that triggered the modal
+			  var link = $(this).find('.modal-title a');
+
+			  switch (button.data('destination')) {
+			  case 'gazett':
+				  link.text("iDAI.Gazetteer");
+				  link.attr("href", "https://gazetteer.dainst.org/");
+				  //$(this).find('#iframe').attr("src","html/dai_gazetteer.html");
+				  $(this).find('.modal-body').load("html/dai_gazetteer.html #content",
+				 			 function() {
+				 				init();
+							 });
+				break;
+			  case 'zenon':
+				  link.text("iDAI.Zenon");
+				  link.attr("href", "http://zenon.dainst.org/");
+				  //$(this).find('#iframe').attr("src","html/dai_zenon.html");
+				  $(this).find('.modal-body').load("html/dai_zenon.html #content",
+				   			 function() {
+				 				init();
+							 });
+				break;	
+			  case 'arachne':
+				  link.text("iDAI.Arachne");
+				  link.attr("href", "http://arachne.dainst.org/");
+				  //$(this).find('#iframe').attr("src","html/dai_arachne.html");
+				  $(this).find('.modal-body').load("html/dai_arachne.html #content",
+				 			 function() {
+				 				init();
+							 });
+				break;
+			  }// end switch
+			}); // end function 
+		});
+    </script>
+	
+	<title>DAI-Serviceschnittstellen (DAI Services)</title>
+</head>
+	<body>
+		<h2>&nbsp;DAI-Serviceschnittstellen (DAI Services)</h2>
+		<table>
+			<tr><td><b>&nbsp;Version:</b></td><td>0.1</td></tr>
+			<tr><td><b>&nbsp;Datum:</b></td><td>08.12.2014</td></tr>
+		</table>
+		<br/>
+			<ul>
+				<li>
+					DAI Service-Schnittstellen als Widget &ouml;ffnen: <br>
+					<button type="button" class="btn btn-primary" data-toggle="modal" 
+							data-target="#modal" data-destination="zenon">
+								iDAI.Zenon Modal &ouml;ffnen
+					</button> 
+					<button type="button" class="btn btn-primary" data-toggle="modal" 
+							data-target="#modal" data-destination="gazett">
+								iDAI.Gazetteer Modal &ouml;ffnen
+					</button> 
+					<button type="button" class="btn btn-primary" data-toggle="modal" 
+							data-target="#modal" data-destination="arachne">
+								iDAI.Arachne Modal &ouml;ffnen
+					</button> 					
+				</li>
+			</ul>
+			<br/>
+			<ul>
+				<li>
+					DAI Service-Schnitstellen in extra Seite &ouml;ffenen: <br>
+					<ul>
+						<li><a href="html/dai_zenon.html">iDAI.Zenon</a></li>
+						<li><a href="html/dai_gazetteer.html">iDAI.Gazetteer</a></li>
+						<li><a href="html/dai_arachne.html">iDAI.Arachne</a></li>
+					</ul>
+				</li>
+			</ul>
+		
+		<h2>&nbsp;JsDoc</h2>
+		<p>&nbsp;<a href="JsDoc/index.html">&nbsp;Quelltextdokumentation der Bibliothek: DAI_SERVICES</a></p>
+		
+		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title">
+					<a href="#" title="Link im neuen Fenster &ouml;ffnen" target="_blank">
+						Destination
+					</a>
+		        </h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--  this works
+		      <iframe id="iframe" src="" style="zoom:0.60" frameborder="0" height="90%" width="99.6%"></iframe>
+		       -->
+		      <!-- load content dynamically -->
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+		        <button type="button" class="btn btn-primary">Speichern</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>
